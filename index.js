@@ -1,3 +1,7 @@
+
+
+cron.schedule(CHECK_CRON, checkForNewCompetitions, { timezone: process.env.TZ || 'Asia/Tokyo' });
+cron.schedule(REMINDER_CRON, checkReminders, { timezone: process.env.TZ || 'Asia/Tokyo' });
 import 'dotenv/config';
 import fs from 'fs/promises';
 import path from 'path';
@@ -7,9 +11,10 @@ import puppeteer from 'puppeteer';
 // ===== 設定 =====
 const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 const LISTING_URL = process.env.LISTING_URL || 'https://tonamel.com/competitions?game=dmps&region=JP';
-const CHECK_CRON = process.env.CHECK_CRON || '0 * * * *'; // 1時間ごと
-const REMINDER_CRON = process.env.REMINDER_CRON || '0 9 * * *'; // 毎日9:00
-const REMINDER_DAYS = (process.env.REMINDER_DAYS || '3,1').split(',').map((n) => parseInt(n.trim(), 10));
+const CHECK_CRON = process.env.CHECK_CRON || '0 * * * *'; // 新着大会チェック：1時間ごと
+const DAILY_REMINDER_CRON = process.env.DAILY_REMINDER_CRON || '0 9 * * *'; // 当日リマインド：毎日9:00
+const HOURLY_REMINDER_CRON = process.env.HOURLY_REMINDER_CRON || '*/15 * * * *'; // 開始1時間前チェック：15分おき
+const TZ = process.env.TZ || 'Asia/Tokyo';
 const DATA_FILE = path.join(process.cwd(), 'data.json');
 
 if (!WEBHOOK_URL) {
@@ -18,7 +23,7 @@ if (!WEBHOOK_URL) {
 }
 
 // ===== データ永続化 =====
-// { competitions: { [id]: { id, url, title, date: 'YYYY-MM-DD'|null, notified: true, remindedDays: number[] } } }
+// { competitions: { [id]: { id, url, title, date, time, startAt, official, remindedDay, remindedHour } } }
 async function loadData() {
   try {
     const raw = await fs.readFile(DATA_FILE, 'utf-8');
@@ -48,94 +53,94 @@ async function sendWebhook(content) {
   }
 }
 
-// ===== 一覧ページから大会リンクを取得（JS描画なのでPuppeteer使用）=====
-async function scrapeListing() {
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+// ===== 一覧ページから大会リンクを取得 =====
+async function scrapeListing(page) {
+  await page.goto(LISTING_URL, { waitUntil: 'networkidle2', timeout: 60000 });
+
+  await page.waitForSelector('a[href*="/competition/"]', { timeout: 30000 }).catch(() => {
+    console.warn('[WARN] 大会リンクが見つかりませんでした。サイト構造が変わった可能性があります。');
   });
-  try {
-    const page = await browser.newPage();
-    await page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36'
-    );
-    await page.goto(LISTING_URL, { waitUntil: 'networkidle2', timeout: 60000 });
 
-    // 大会カードが描画されるまで待つ（構造が変わった場合はここのセレクタを調整）
-    await page.waitForSelector('a[href*="/competition/"]', { timeout: 30000 }).catch(() => {
-      console.warn('[WARN] 大会リンクが見つかりませんでした。サイト構造が変わった可能性があります。');
-    });
+  const links = await page.$$eval('a[href*="/competition/"]', (as) => as.map((a) => a.href));
 
-    const links = await page.$$eval('a[href*="/competition/"]', (as) =>
-      as.map((a) => a.href)
-    );
-
-    // 重複除去 + IDだけ抽出
-    const seen = new Set();
-    const results = [];
-    for (const href of links) {
-      const m = href.match(/\/competition\/([A-Za-z0-9]+)/);
-      if (!m) continue;
-      const id = m[1];
-      if (seen.has(id)) continue;
-      seen.add(id);
-      results.push({ id, url: `https://tonamel.com/competition/${id}` });
-    }
-    return results;
-  } finally {
-    await browser.close();
+  const seen = new Set();
+  const results = [];
+  for (const href of links) {
+    const m = href.match(/\/competition\/([A-Za-z0-9]+)/);
+    if (!m) continue;
+    const id = m[1];
+    if (seen.has(id) || id.length < 3) continue; // matchup等の長いIDを除外
+    seen.add(id);
+    results.push({ id, url: `https://tonamel.com/competition/${id}` });
   }
+  return results;
 }
 
-// ===== 個別大会ページから タイトル・開催日 を取得（静的fetchで十分）=====
-async function fetchDetail(url) {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; DMPS-Tournament-Bot/1.0)' },
-  });
-  const html = await res.text();
+// ===== 個別大会ページから タイトル・開始日時・公認かどうか を取得 =====
+async function fetchDetail(page, url) {
+  await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
+  await page.waitForSelector('body', { timeout: 30000 });
 
-  const titleMatch = html.match(/<title>(.*?)<\/title>/s);
-  let title = titleMatch ? titleMatch[1].replace(/\s*-\s*Tonamel\s*$/, '').trim() : url;
+  const pageTitle = await page.title();
+  const title = pageTitle.replace(/\s*-\s*Tonamel\s*$/, '').trim();
 
-  const descMatch = html.match(/<meta name="description" content="(.*?)"/s);
-  const desc = descMatch ? descMatch[1] : '';
+  const bodyText = await page.evaluate(() => document.body.innerText);
 
-  // 開催日：2025年5月11日 のようなパターンを抽出
-  const dateMatch = desc.match(/開催日[：:]\s*(\d{4})年(\d{1,2})月(\d{1,2})日/);
+  // 「イベント開始予定 2026/08/06(木) 21:00 ～」のような構造化された表示を抽出
+  const dtMatch = bodyText.match(
+    /イベント開始予定\s*\n?\s*(\d{4})\/(\d{1,2})\/(\d{1,2})\([^)]*\)\s*(\d{1,2}):(\d{2})/
+  );
+
   let date = null;
-  if (dateMatch) {
-    const [, y, mo, d] = dateMatch;
+  let time = null;
+  let startAt = null;
+  if (dtMatch) {
+    const [, y, mo, d, hh, mm] = dtMatch;
     date = `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    time = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+    startAt = `${date}T${time}:00+09:00`;
   }
 
-  // タイトルまたは説明文に「公認」が含まれる大会だけを対象とする
-  const official = /公認/.test(title) || /公認/.test(desc);
+  // 「公認」の文字がページ内にあるかで公認大会かどうかを判定
+  const official = /公認/.test(bodyText) || /公認/.test(title);
 
-  return { title, date, official };
+  return { title, date, time, startAt, official };
 }
 
 // ===== 新着大会チェック =====
-async function checkForNewCompetitions() {
+async function checkForNewCompetitions(browser) {
   console.log('[INFO] 新着大会チェック開始:', new Date().toISOString());
   const data = await loadData();
 
+  const listPage = await browser.newPage();
+  await listPage.setUserAgent(
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36'
+  );
+
   let listing;
   try {
-    listing = await scrapeListing();
+    listing = await scrapeListing(listPage);
   } catch (err) {
     console.error('[ERROR] 一覧ページの取得に失敗:', err);
+    await listPage.close();
     return;
   }
+  await listPage.close();
+
+  const detailPage = await browser.newPage();
+  await detailPage.setUserAgent(
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36'
+  );
 
   for (const { id, url } of listing) {
     if (data.competitions[id]) continue; // 既知の大会はスキップ
 
     let detail;
     try {
-      detail = await fetchDetail(url);
+      detail = await fetchDetail(detailPage, url);
     } catch (err) {
       console.error(`[ERROR] 詳細ページ取得失敗 (${id}):`, err);
-      detail = { title: url, date: null, official: false };
+      detail = { title: url, date: null, time: null, startAt: null, official: false };
     }
 
     data.competitions[id] = {
@@ -143,9 +148,11 @@ async function checkForNewCompetitions() {
       url,
       title: detail.title,
       date: detail.date,
+      time: detail.time,
+      startAt: detail.startAt,
       official: detail.official,
-      notified: detail.official,
-      remindedDays: [],
+      remindedDay: false,
+      remindedHour: false,
     };
 
     if (!detail.official) {
@@ -153,47 +160,82 @@ async function checkForNewCompetitions() {
       continue;
     }
 
-    const dateText = detail.date ? `\n開催日: ${detail.date}` : '';
-    await sendWebhook(`📢 新しい公認大会が見つかりました！\n**${detail.title}**${dateText}\n${url}`);
+    const whenText = detail.date ? `\n開催日時: ${detail.date} ${detail.time ?? ''}` : '';
+    await sendWebhook(`📢 新しい公認大会が見つかりました！\n**${detail.title}**${whenText}\n${url}`);
     console.log(`[INFO] 新着大会を通知: ${detail.title}`);
   }
 
+  await detailPage.close();
   await saveData(data);
   console.log('[INFO] 新着大会チェック終了');
 }
 
-// ===== 開催日リマインドチェック =====
-async function checkReminders() {
-  console.log('[INFO] リマインドチェック開始:', new Date().toISOString());
+// ===== 当日9:00リマインド =====
+async function checkDailyReminders() {
+  console.log('[INFO] 当日リマインドチェック開始:', new Date().toISOString());
   const data = await loadData();
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const todayStr = new Date().toLocaleDateString('sv-SE', { timeZone: TZ }); // YYYY-MM-DD
 
   for (const comp of Object.values(data.competitions)) {
-    if (!comp.date || !comp.official) continue;
-    const eventDate = new Date(comp.date + 'T00:00:00');
-    const diffDays = Math.round((eventDate - today) / (1000 * 60 * 60 * 24));
-
-    if (REMINDER_DAYS.includes(diffDays) && !comp.remindedDays.includes(diffDays)) {
-      const label = diffDays === 0 ? '本日開催' : `${diffDays}日後に開催`;
-      await sendWebhook(`⏰ リマインド：**${comp.title}** が${label}です（${comp.date}）\n${comp.url}`);
-      comp.remindedDays.push(diffDays);
-      console.log(`[INFO] リマインド送信: ${comp.title} (${diffDays}日前)`);
+    if (!comp.official || !comp.date || comp.remindedDay) continue;
+    if (comp.date === todayStr) {
+      const timeText = comp.time ? `${comp.time}～` : '';
+      await sendWebhook(`⏰ 本日開催：**${comp.title}**\n${timeText}\n${comp.url}`);
+      comp.remindedDay = true;
+      console.log(`[INFO] 当日リマインド送信: ${comp.title}`);
     }
   }
 
   await saveData(data);
-  console.log('[INFO] リマインドチェック終了');
+  console.log('[INFO] 当日リマインドチェック終了');
+}
+
+// ===== 開始1時間前リマインド（15分おきにチェック）=====
+async function checkHourlyReminders() {
+  const data = await loadData();
+  const now = new Date();
+
+  for (const comp of Object.values(data.competitions)) {
+    if (!comp.official || !comp.startAt || comp.remindedHour) continue;
+    const startAt = new Date(comp.startAt);
+    const diffMin = (startAt - now) / 60000;
+
+    // 45分〜60分前のウィンドウで検知（15分おきチェックなので取りこぼし防止に幅を持たせる）
+    if (diffMin <= 60 && diffMin > 45) {
+      await sendWebhook(`⏰ まもなく開始：**${comp.title}** が1時間後に開始します（${comp.time}～）\n${comp.url}`);
+      comp.remindedHour = true;
+      console.log(`[INFO] 1時間前リマインド送信: ${comp.title}`);
+      await saveData(data);
+    }
+  }
 }
 
 // ===== 起動 =====
 console.log('[INFO] DMPS大会通知Bot 起動');
 console.log(`[INFO] 監視URL: ${LISTING_URL}`);
 console.log(`[INFO] 新着チェック cron: ${CHECK_CRON}`);
-console.log(`[INFO] リマインド cron: ${REMINDER_CRON} (${REMINDER_DAYS.join(',')}日前)`);
+console.log(`[INFO] 当日リマインド cron: ${DAILY_REMINDER_CRON}`);
+console.log(`[INFO] 1時間前リマインド cron: ${HOURLY_REMINDER_CRON}`);
+
+async function launchBrowser() {
+  return puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
+}
+
+async function runNewCompetitionsCheck() {
+  const browser = await launchBrowser();
+  try {
+    await checkForNewCompetitions(browser);
+  } finally {
+    await browser.close();
+  }
+}
 
 // 起動時に1回実行
-checkForNewCompetitions().then(checkReminders);
+runNewCompetitionsCheck().then(checkDailyReminders).then(checkHourlyReminders);
 
-cron.schedule(CHECK_CRON, checkForNewCompetitions, { timezone: process.env.TZ || 'Asia/Tokyo' });
-cron.schedule(REMINDER_CRON, checkReminders, { timezone: process.env.TZ || 'Asia/Tokyo' });
+cron.schedule(CHECK_CRON, runNewCompetitionsCheck, { timezone: TZ });
+cron.schedule(DAILY_REMINDER_CRON, checkDailyReminders, { timezone: TZ });
+cron.schedule(HOURLY_REMINDER_CRON, checkHourlyReminders, { timezone: TZ });
