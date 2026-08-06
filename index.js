@@ -100,7 +100,17 @@ async function fetchDetail(page, url) {
   // 「公認」の文字がページ内にあるかで公認大会かどうかを判定
   const official = /公認/.test(bodyText) || /公認/.test(title);
 
-  return { title, date, time, startAt, official };
+  // レギュレーション（ND/AD/SP）の判定：主催者の説明文中の表記ゆれに対応
+  let regulation = null;
+  if (/New\s*Division|ニューディビジョン|フォーマット[:：]?\s*ND\b|レギュレーション[:：]?\s*ND\b/i.test(bodyText)) {
+    regulation = 'ND';
+  } else if (/All\s*Division|オールディビジョン|フォーマット[:：]?\s*AD\b|レギュレーション[:：]?\s*AD\b/i.test(bodyText)) {
+    regulation = 'AD';
+  } else if (/SP\s*ルール|スペシャルルール|SPマッチ|フォーマット[:：]?\s*SP\b/i.test(bodyText)) {
+    regulation = 'SP';
+  }
+
+  return { title, date, time, startAt, official, regulation };
 }
 
 // ===== 新着大会チェック =====
@@ -147,6 +157,7 @@ async function checkForNewCompetitions(browser) {
       time: detail.time,
       startAt: detail.startAt,
       official: detail.official,
+      regulation: detail.regulation,
       remindedDay: false,
       remindedHour: false,
     };
@@ -156,9 +167,7 @@ async function checkForNewCompetitions(browser) {
       continue;
     }
 
-    const whenText = detail.date ? `\n開催日時: ${detail.date} ${detail.time ?? ''}` : '';
-    await sendWebhook(`📢 新しい公認大会が見つかりました！\n**${detail.title}**${whenText}\n${url}`);
-    console.log(`[INFO] 新着大会を通知: ${detail.title}`);
+    console.log(`[INFO] 新着公認大会を記録（通知はしない）: ${detail.title}`);
   }
 
   await detailPage.close();
@@ -176,7 +185,8 @@ async function checkDailyReminders() {
     if (!comp.official || !comp.date || comp.remindedDay) continue;
     if (comp.date === todayStr) {
       const timeText = comp.time ? `${comp.time}～` : '';
-      await sendWebhook(`⏰ 本日開催：**${comp.title}**\n${timeText}\n${comp.url}`);
+      const regText = comp.regulation ? `\nレギュレーション: ${comp.regulation}` : '';
+      await sendWebhook(`⏰ 本日開催：**${comp.title}**\n${timeText}${regText}\n${comp.url}`);
       comp.remindedDay = true;
       console.log(`[INFO] 当日リマインド送信: ${comp.title}`);
     }
@@ -198,7 +208,8 @@ async function checkHourlyReminders() {
 
     // 45分〜60分前のウィンドウで検知（15分おきチェックなので取りこぼし防止に幅を持たせる）
     if (diffMin <= 60 && diffMin > 45) {
-      await sendWebhook(`⏰ まもなく開始：**${comp.title}** が1時間後に開始します（${comp.time}～）\n${comp.url}`);
+      const regText = comp.regulation ? `（${comp.regulation}）` : '';
+      await sendWebhook(`⏰ まもなく開始：**${comp.title}**${regText} が1時間後に開始します（${comp.time}～）\n${comp.url}`);
       comp.remindedHour = true;
       console.log(`[INFO] 1時間前リマインド送信: ${comp.title}`);
       await saveData(data);
