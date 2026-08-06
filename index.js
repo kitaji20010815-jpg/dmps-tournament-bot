@@ -96,7 +96,7 @@ async function fetchDetail(page, url) {
   const metaDesc = await page
     .$eval('meta[name="description"]', (el) => el.content)
     .catch(() => '');
-  const searchText = `${bodyText}\n${fullText}\n${metaDesc}`;
+  const searchText = `${title}\n${bodyText}\n${fullText}\n${metaDesc}`;
 
   // 「イベント開始予定 2026/08/06(木) 21:00 ～」のような構造化された表示を抽出
   const dtMatch = bodyText.match(
