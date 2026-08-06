@@ -1,7 +1,3 @@
-
-
-cron.schedule(CHECK_CRON, checkForNewCompetitions, { timezone: process.env.TZ || 'Asia/Tokyo' });
-cron.schedule(REMINDER_CRON, checkReminders, { timezone: process.env.TZ || 'Asia/Tokyo' });
 import 'dotenv/config';
 import fs from 'fs/promises';
 import path from 'path';
