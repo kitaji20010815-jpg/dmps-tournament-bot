@@ -81,6 +81,12 @@ async function fetchDetail(page, url) {
   const title = pageTitle.replace(/\s*-\s*Tonamel\s*$/, '').trim();
 
   const bodyText = await page.evaluate(() => document.body.innerText);
+  // 折りたたまれたルール欄など、innerTextで拾えない非表示テキストも対象にする
+  const fullText = await page.evaluate(() => document.body.textContent);
+  const metaDesc = await page
+    .$eval('meta[name="description"]', (el) => el.content)
+    .catch(() => '');
+  const searchText = `${bodyText}\n${fullText}\n${metaDesc}`;
 
   // 「イベント開始予定 2026/08/06(木) 21:00 ～」のような構造化された表示を抽出
   const dtMatch = bodyText.match(
@@ -98,15 +104,15 @@ async function fetchDetail(page, url) {
   }
 
   // 「公認」の文字がページ内にあるかで公認大会かどうかを判定
-  const official = /公認/.test(bodyText) || /公認/.test(title);
+  const official = /公認/.test(searchText) || /公認/.test(title);
 
   // レギュレーション（ND/AD/SP）の判定：主催者の説明文中の表記ゆれに対応
   let regulation = null;
-  if (/New\s*Division|ニューディビジョン|フォーマット[:：]?\s*ND\b|レギュレーション[:：]?\s*ND\b/i.test(bodyText)) {
+  if (/New\s*Division|ニューディビジョン|フォーマット[:：]?\s*ND\b|レギュレーション[:：]?\s*ND\b/i.test(searchText)) {
     regulation = 'ND';
-  } else if (/All\s*Division|オールディビジョン|フォーマット[:：]?\s*AD\b|レギュレーション[:：]?\s*AD\b/i.test(bodyText)) {
+  } else if (/All\s*Division|オールディビジョン|フォーマット[:：]?\s*AD\b|レギュレーション[:：]?\s*AD\b/i.test(searchText)) {
     regulation = 'AD';
-  } else if (/SP\s*ルール|スペシャルルール|SPマッチ|フォーマット[:：]?\s*SP\b/i.test(bodyText)) {
+  } else if (/SP\s*ルール|スペシャルルール|SPマッチ|フォーマット[:：]?\s*SP\b/i.test(searchText)) {
     regulation = 'SP';
   }
 
