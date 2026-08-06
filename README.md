@@ -1,11 +1,13 @@
+[README.md](https://github.com/user-attachments/files/30773395/README.md)
 # DMPS 公認大会通知Bot
 
 Tonamelの大会一覧ページ（`https://tonamel.com/competitions?game=dmps&region=JP`）を定期的にチェックし、
 
-- 新しい大会が公開されたら Discord に通知
-- 大会の開催日が近づいたら（デフォルト: 3日前・前日）リマインド通知
+- 新しい**公認**大会が公開されたら Discord に通知
+- 大会**当日の朝9:00**にリマインド通知
+- 大会**開始1時間前**にリマインド通知
 
-を Discord の Webhook 経由で送るBotです。
+を Discord の Webhook 経由で送るBotです。開始日時は各大会ページの「イベント開始予定」欄から取得しています。
 
 ## 必要なもの
 
