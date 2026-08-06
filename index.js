@@ -77,6 +77,16 @@ async function fetchDetail(page, url) {
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
   await page.waitForSelector('body', { timeout: 30000 });
 
+  // ページタイトルがJSで書き換わるまで少し待つ（"Tonamel"のままの取得失敗を減らす）
+  try {
+    await page.waitForFunction(
+      () => document.title && document.title.trim().toLowerCase() !== 'tonamel',
+      { timeout: 15000 }
+    );
+  } catch {
+    // 15秒待っても変わらなければそのまま進める（呼び出し元で失敗扱いにする）
+  }
+
   const pageTitle = await page.title();
   const title = pageTitle.replace(/\s*-\s*Tonamel\s*$/, '').trim();
 
@@ -152,7 +162,14 @@ async function checkForNewCompetitions(browser) {
       detail = await fetchDetail(detailPage, url);
     } catch (err) {
       console.error(`[ERROR] 詳細ページ取得失敗 (${id}):`, err);
-      detail = { title: url, date: null, time: null, startAt: null, official: false };
+      detail = null;
+    }
+
+    // タイトルが取れていない（読み込み未完了など）場合は記録せず、次回チェックでリトライする
+    const titleLooksInvalid = !detail || !detail.title || detail.title.trim().toLowerCase() === 'tonamel';
+    if (titleLooksInvalid) {
+      console.warn(`[WARN] タイトル取得に失敗したため今回はスキップ（次回リトライ）: ${url}`);
+      continue;
     }
 
     data.competitions[id] = {
