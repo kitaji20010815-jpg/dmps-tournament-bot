@@ -126,6 +126,15 @@ async function fetchDetail(page, url) {
     regulation = 'SP';
   }
 
+  // 本文で見つからなかった場合、大会名自体に単独でND/AD/SPと入っているケースを拾う
+  // （記号・空白・文字列の端で区切られている場合のみ検出し、他の単語の一部を誤検出しないようにする）
+  if (!regulation) {
+    const titleTagMatch = title.match(/(?:^|[^A-Za-z])(ND|AD|SP)(?:$|[^A-Za-z])/);
+    if (titleTagMatch) {
+      regulation = titleTagMatch[1].toUpperCase();
+    }
+  }
+
   return { title, date, time, startAt, official, regulation };
 }
 
