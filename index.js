@@ -90,6 +90,16 @@ async function fetchDetail(page, url) {
   const pageTitle = await page.title();
   const title = pageTitle.replace(/\s*-\s*Tonamel\s*$/, '').trim();
 
+  // 「イベント開始予定」欄が実際に描画されるまで待つ（無い大会もあるので、無ければタイムアウトで諦める）
+  try {
+    await page.waitForFunction(
+      () => document.body.innerText.includes('イベント開始予定'),
+      { timeout: 20000 }
+    );
+  } catch {
+    // 見つからない場合はそのまま進める（その大会は開始日時なしとして扱われる）
+  }
+
   const bodyText = await page.evaluate(() => document.body.innerText);
   // 折りたたまれたルール欄など、innerTextで拾えない非表示テキストも対象にする
   const fullText = await page.evaluate(() => document.body.textContent);
