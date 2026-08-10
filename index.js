@@ -90,43 +90,53 @@ async function fetchDetail(page, url) {
   const pageTitle = await page.title();
   const title = pageTitle.replace(/\s*-\s*Tonamel\s*$/, '').trim();
 
-  // 「イベント開始予定」欄が実際に描画されるまで待つ（無い大会もあるので、無ければタイムアウトで諦める）
-  try {
-    await page.waitForFunction(
-      () => document.body.innerText.includes('イベント開始予定'),
-      { timeout: 20000 }
-    );
-  } catch {
-    // 見つからない場合はそのまま進める（その大会は開始日時なしとして扱われる）
-  }
+  // Tonamelはページ表示が遅れることがあるので、まずDOMを安定させる。
+  // 「イベント開始予定」が無い大会もあるため、ここでは長時間waitして全体を止めない。
+  await new Promise((resolve) => setTimeout(resolve, 1500));
 
-  const bodyText = await page.evaluate(() => document.body.innerText);
-  // 折りたたまれたルール欄など、innerTextで拾えない非表示テキストも対象にする
-  const fullText = await page.evaluate(() => document.body.textContent);
+  const bodyText = await page.evaluate(() => document.body?.innerText || '');
+  // innerText / textContent / meta description のどれかに日時が入っている場合に備える。
+  const fullText = await page.evaluate(() => document.body?.textContent || '');
   const metaDesc = await page
     .$eval('meta[name="description"]', (el) => el.content)
     .catch(() => '');
   const searchText = `${title}\n${bodyText}\n${fullText}\n${metaDesc}`;
 
-  // 「イベント開始予定 2026/08/06(木) 21:00 ～」のような構造化された表示を抽出
-  const dtMatch = bodyText.match(
-    /イベント開始予定\s*\n?\s*(\d{4})\/(\d{1,2})\/(\d{1,2})\([^)]*\)\s*(\d{1,2}):(\d{2})/
-  );
+  // 表示上は
+  //   イベント開始予定
+  //   2026/08/06(木) 21:00 ～
+  // のように改行される。空白・改行・曜日の有無に左右されないように抽出する。
+  const normalizedText = searchText
+    .replace(/\u00a0/g, ' ')
+    .replace(/[\\r\\n\\t]+/g, ' ')
+    .replace(/\\s+/g, ' ')
+    .trim();
+
+  const datePatterns = [
+    /イベント開始予定\\s*[:：]?\\s*(\\d{4})[\\/-](\\d{1,2})[\\/-](\\d{1,2})(?:\\s*\\([^)]*\\))?\\s*(\\d{1,2}):(\\d{2})/,
+    /イベント開始予定\\s*[:：]?\\s*(\\d{4})年(\\d{1,2})月(\\d{1,2})日(?:\\s*\\([^)]*\\))?\\s*(\\d{1,2}):(\\d{2})/
+  ];
+
+  let dtMatch = null;
+  for (const pattern of datePatterns) {
+    dtMatch = normalizedText.match(pattern);
+    if (dtMatch) break;
+  }
 
   let date = null;
   let time = null;
   let startAt = null;
+
   if (dtMatch) {
     const [, y, mo, d, hh, mm] = dtMatch;
     date = `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
     time = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
     startAt = `${date}T${time}:00+09:00`;
+    console.log(`[INFO] 開始日時取得成功: ${date} ${time} (${url})`);
   } else {
-    // デバッグ用：なぜ日時が取れなかったかログに残す
-    const hasLabel = bodyText.includes('イベント開始予定');
-    if (hasLabel) {
-      const idx = bodyText.indexOf('イベント開始予定');
-      const snippet = bodyText.slice(idx, idx + 60).replace(/\n/g, '\\n');
+    const labelIndex = normalizedText.indexOf('イベント開始予定');
+    if (labelIndex >= 0) {
+      const snippet = normalizedText.slice(labelIndex, labelIndex + 180);
       console.warn(`[WARN] 「イベント開始予定」は見つかったが日時の抽出に失敗: "${snippet}" (${url})`);
     } else {
       console.warn(`[WARN] 「イベント開始予定」の文字自体が見つからなかった (${url})`);
@@ -186,7 +196,11 @@ async function checkForNewCompetitions(browser) {
   await detailPage.setViewport({ width: 1280, height: 900 });
 
   for (const { id, url } of listing) {
-    if (data.competitions[id]) continue; // 既知の大会はスキップ
+    const existing = data.competitions[id];
+
+    // 新規大会、または過去に日時取得に失敗して date/startAt が null の大会は再取得する。
+    // これにより、以前の「date: null」が永久に残る問題を防ぐ。
+    if (existing && existing.date && existing.startAt) continue;
 
     let detail;
     try {
@@ -196,7 +210,6 @@ async function checkForNewCompetitions(browser) {
       detail = null;
     }
 
-    // タイトルが取れていない（読み込み未完了など）場合は記録せず、次回チェックでリトライする
     const titleLooksInvalid = !detail || !detail.title || detail.title.trim().toLowerCase() === 'tonamel';
     if (titleLooksInvalid) {
       console.warn(`[WARN] タイトル取得に失敗したため今回はスキップ（次回リトライ）: ${url}`);
@@ -212,8 +225,8 @@ async function checkForNewCompetitions(browser) {
       startAt: detail.startAt,
       official: detail.official,
       regulation: detail.regulation,
-      remindedDay: false,
-      remindedHour: false,
+      remindedDay: existing?.remindedDay ?? false,
+      remindedHour: existing?.remindedHour ?? false,
     };
 
     if (!detail.official) {
@@ -221,7 +234,7 @@ async function checkForNewCompetitions(browser) {
       continue;
     }
 
-    console.log(`[INFO] 新着公認大会を記録（通知はしない）: ${detail.title}`);
+    console.log(`[INFO] 公認大会を記録/更新（通知はしない）: ${detail.title}`);
   }
 
   await detailPage.close();
