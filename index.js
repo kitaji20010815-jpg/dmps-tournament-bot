@@ -121,6 +121,16 @@ async function fetchDetail(page, url) {
     date = `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
     time = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
     startAt = `${date}T${time}:00+09:00`;
+  } else {
+    // デバッグ用：なぜ日時が取れなかったかログに残す
+    const hasLabel = bodyText.includes('イベント開始予定');
+    if (hasLabel) {
+      const idx = bodyText.indexOf('イベント開始予定');
+      const snippet = bodyText.slice(idx, idx + 60).replace(/\n/g, '\\n');
+      console.warn(`[WARN] 「イベント開始予定」は見つかったが日時の抽出に失敗: "${snippet}" (${url})`);
+    } else {
+      console.warn(`[WARN] 「イベント開始予定」の文字自体が見つからなかった (${url})`);
+    }
   }
 
   // 「公認」の文字がページ内にあるかで公認大会かどうかを判定
@@ -157,6 +167,7 @@ async function checkForNewCompetitions(browser) {
   await listPage.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36'
   );
+  await listPage.setViewport({ width: 1280, height: 900 });
 
   let listing;
   try {
@@ -172,6 +183,7 @@ async function checkForNewCompetitions(browser) {
   await detailPage.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36'
   );
+  await detailPage.setViewport({ width: 1280, height: 900 });
 
   for (const { id, url } of listing) {
     if (data.competitions[id]) continue; // 既知の大会はスキップ
