@@ -74,98 +74,292 @@ async function scrapeListing(page) {
 
 // ===== 個別大会ページから タイトル・開始日時・公認かどうか を取得 =====
 async function fetchDetail(page, url) {
-  await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
-  await page.waitForSelector('body', { timeout: 30000 });
+  await page.goto(url, {
+    waitUntil: 'networkidle2',
+    timeout: 60000
+  });
 
-  // ページタイトルがJSで書き換わるまで少し待つ（"Tonamel"のままの取得失敗を減らす）
+  await page.waitForSelector('body', {
+    timeout: 30000
+  });
+
+  // ページタイトルが確定するまで少し待つ
   try {
     await page.waitForFunction(
       () => document.title && document.title.trim().toLowerCase() !== 'tonamel',
       { timeout: 15000 }
     );
   } catch {
-    // 15秒待っても変わらなければそのまま進める（呼び出し元で失敗扱いにする）
+    // タイトルが変わらなくても、そのまま処理する
   }
 
   const pageTitle = await page.title();
-  const title = pageTitle.replace(/\s*-\s*Tonamel\s*$/, '').trim();
+  const title = pageTitle
+    .replace(/\s*-\s*Tonamel\s*$/, '')
+    .trim();
 
-  // Tonamelはページ表示が遅れることがあるので、まずDOMを安定させる。
-  // 「イベント開始予定」が無い大会もあるため、ここでは長時間waitして全体を止めない。
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  // 少し待って、JSによる大会情報の描画を待つ
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  const bodyText = await page.evaluate(() => document.body?.innerText || '');
-  // innerText / textContent / meta description のどれかに日時が入っている場合に備える。
-  const fullText = await page.evaluate(() => document.body?.textContent || '');
+  // ページ内のテキストを取得
+  const bodyText = await page.evaluate(
+    () => document.body?.innerText || ''
+  );
+
+  const fullText = await page.evaluate(
+    () => document.body?.textContent || ''
+  );
+
   const metaDesc = await page
     .$eval('meta[name="description"]', (el) => el.content)
     .catch(() => '');
-  const searchText = `${title}\n${bodyText}\n${fullText}\n${metaDesc}`;
 
-  // 表示上は
-  //   イベント開始予定
-  //   2026/08/06(木) 21:00 ～
-  // のように改行される。空白・改行・曜日の有無に左右されないように抽出する。
+  // ============================================================
+  // 構造化データ(JSON-LD)から開始日時を探す
+  // ============================================================
+
+  let structuredStart = null;
+
+  try {
+    structuredStart = await page.evaluate(() => {
+      const nodes = [
+        ...document.querySelectorAll(
+          'script[type="application/ld+json"]'
+        )
+      ];
+
+      const starts = [];
+
+      const walk = (value) => {
+        if (!value || typeof value !== 'object') return;
+
+        if (Array.isArray(value)) {
+          for (const item of value) {
+            walk(item);
+          }
+          return;
+        }
+
+        if (typeof value.startDate === 'string') {
+          starts.push(value.startDate);
+        }
+
+        for (const child of Object.values(value)) {
+          walk(child);
+        }
+      };
+
+      for (const node of nodes) {
+        try {
+          const json = JSON.parse(node.textContent || '');
+          walk(json);
+        } catch {
+          // JSON-LDでないものは無視
+        }
+      }
+
+      return starts[0] || null;
+    });
+  } catch {
+    structuredStart = null;
+  }
+
+  // ============================================================
+  // テキストを正規化
+  // ============================================================
+
+  const searchText =
+    `${title}\n${bodyText}\n${fullText}\n${metaDesc}`;
+
   const normalizedText = searchText
     .replace(/\u00a0/g, ' ')
-    .replace(/[\\r\\n\\t]+/g, ' ')
-    .replace(/\\s+/g, ' ')
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 
-  const datePatterns = [
-    /イベント開始予定\\s*[:：]?\\s*(\\d{4})[\\/-](\\d{1,2})[\\/-](\\d{1,2})(?:\\s*\\([^)]*\\))?\\s*(\\d{1,2}):(\\d{2})/,
-    /イベント開始予定\\s*[:：]?\\s*(\\d{4})年(\\d{1,2})月(\\d{1,2})日(?:\\s*\\([^)]*\\))?\\s*(\\d{1,2}):(\\d{2})/
-  ];
-
-  let dtMatch = null;
-  for (const pattern of datePatterns) {
-    dtMatch = normalizedText.match(pattern);
-    if (dtMatch) break;
-  }
+  // ============================================================
+  // 開始日時を取得
+  // ============================================================
 
   let date = null;
   let time = null;
   let startAt = null;
 
-  if (dtMatch) {
-    const [, y, mo, d, hh, mm] = dtMatch;
-    date = `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-    time = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
-    startAt = `${date}T${time}:00+09:00`;
-    console.log(`[INFO] 開始日時取得成功: ${date} ${time} (${url})`);
-  } else {
-    const labelIndex = normalizedText.indexOf('イベント開始予定');
-    if (labelIndex >= 0) {
-      const snippet = normalizedText.slice(labelIndex, labelIndex + 180);
-      console.warn(`[WARN] 「イベント開始予定」は見つかったが日時の抽出に失敗: "${snippet}" (${url})`);
-    } else {
-      console.warn(`[WARN] 「イベント開始予定」の文字自体が見つからなかった (${url})`);
+  // ------------------------------------------------------------
+  // 方法1：JSON-LDのstartDate
+  // ------------------------------------------------------------
+
+  if (structuredStart) {
+    const isoMatch = structuredStart.match(
+      /^(\d{4})-(\d{2})-(\d{2})[T ](\d{1,2}):(\d{2})/
+    );
+
+    if (isoMatch) {
+      const [, y, mo, d, hh, mm] = isoMatch;
+
+      date =
+        `${y}-${mo}-${d}`;
+
+      time =
+        `${String(hh).padStart(2, '0')}:${mm}`;
+
+      startAt =
+        `${date}T${time}:00+09:00`;
     }
   }
 
-  // 「公認」の文字がページ内にあるかで公認大会かどうかを判定
-  const official = /公認/.test(searchText) || /公認/.test(title);
+  // ------------------------------------------------------------
+  // 方法2：「イベント開始予定」の近くから日時を取得
+  // ------------------------------------------------------------
 
-  // レギュレーション（ND/AD/SP）の判定：主催者の説明文中の表記ゆれに対応
+  if (!startAt) {
+    const labelIndex =
+      normalizedText.indexOf('イベント開始予定');
+
+    if (labelIndex >= 0) {
+      const area =
+        normalizedText.slice(
+          labelIndex,
+          labelIndex + 300
+        );
+
+      const patterns = [
+        /(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s*\([^)]*\))?\s*(\d{1,2}):(\d{2})/,
+        /(\d{4})年(\d{1,2})月(\d{1,2})日(?:\s*\([^)]*\))?\s*(\d{1,2}):(\d{2})/
+      ];
+
+      for (const pattern of patterns) {
+        const match = area.match(pattern);
+
+        if (match) {
+          const [, y, mo, d, hh, mm] = match;
+
+          date =
+            `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+          time =
+            `${String(hh).padStart(2, '0')}:${mm}`;
+
+          startAt =
+            `${date}T${time}:00+09:00`;
+
+          break;
+        }
+      }
+    }
+  }
+
+  // ------------------------------------------------------------
+  // 方法3：ラベルが無くてもページ全体から日時を探す
+  // ------------------------------------------------------------
+
+  if (!startAt) {
+    const patterns = [
+      /(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s*\([^)]*\))?\s*(\d{1,2}):(\d{2})/,
+      /(\d{4})年(\d{1,2})月(\d{1,2})日(?:\s*\([^)]*\))?\s*(\d{1,2}):(\d{2})/
+    ];
+
+    for (const pattern of patterns) {
+      const match =
+        normalizedText.match(pattern);
+
+      if (match) {
+        const [, y, mo, d, hh, mm] = match;
+
+        date =
+          `${y}-${String(mo).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+        time =
+          `${String(hh).padStart(2, '0')}:${mm}`;
+
+        startAt =
+          `${date}T${time}:00+09:00`;
+
+        break;
+      }
+    }
+  }
+
+  // ============================================================
+  // 日時取得結果をログに出す
+  // ============================================================
+
+  if (startAt) {
+    console.log(
+      `[INFO] 開始日時取得成功: ${date} ${time} (${url})`
+    );
+  } else {
+    const labelIndex =
+      normalizedText.indexOf('イベント開始予定');
+
+    if (labelIndex >= 0) {
+      console.warn(
+        `[WARN] 日時抽出失敗。イベント開始予定付近: "${normalizedText.slice(labelIndex, labelIndex + 180)}" (${url})`
+      );
+    } else {
+      console.warn(
+        `[WARN] 日時抽出失敗。イベント開始予定ラベルなし: "${normalizedText.slice(0, 250)}" (${url})`
+      );
+    }
+  }
+
+  // ============================================================
+  // 公認大会か判定
+  // ============================================================
+
+  const official =
+    /公認/.test(searchText) ||
+    /公認/.test(title);
+
+  // ============================================================
+  // レギュレーション判定
+  // ============================================================
+
   let regulation = null;
-  if (/New\s*Division|ニューディビジョン|フォーマット[:：]?\s*ND\b|レギュレーション[:：]?\s*ND\b/i.test(searchText)) {
+
+  if (
+    /New\s*Division|ニューディビジョン|フォーマット[:：]?\s*ND\b|レギュレーション[:：]?\s*ND\b/i.test(
+      searchText
+    )
+  ) {
     regulation = 'ND';
-  } else if (/All\s*Division|オールディビジョン|フォーマット[:：]?\s*AD\b|レギュレーション[:：]?\s*AD\b/i.test(searchText)) {
+
+  } else if (
+    /All\s*Division|オールディビジョン|フォーマット[:：]?\s*AD\b|レギュレーション[:：]?\s*AD\b/i.test(
+      searchText
+    )
+  ) {
     regulation = 'AD';
-  } else if (/SP\s*ルール|スペシャルルール|SPマッチ|フォーマット[:：]?\s*SP\b/i.test(searchText)) {
+
+  } else if (
+    /SP\s*ルール|スペシャルルール|SPマッチ|フォーマット[:：]?\s*SP\b/i.test(
+      searchText
+    )
+  ) {
     regulation = 'SP';
   }
 
-  // 本文で見つからなかった場合、大会名自体に単独でND/AD/SPと入っているケースを拾う
-  // （記号・空白・文字列の端で区切られている場合のみ検出し、他の単語の一部を誤検出しないようにする）
+  // 大会名にND / AD / SPが入っている場合
   if (!regulation) {
-    const titleTagMatch = title.match(/(?:^|[^A-Za-z])(ND|AD|SP)(?:$|[^A-Za-z])/);
+    const titleTagMatch =
+      title.match(
+        /(?:^|[^A-Za-z])(ND|AD|SP)(?:$|[^A-Za-z])/
+      );
+
     if (titleTagMatch) {
-      regulation = titleTagMatch[1].toUpperCase();
+      regulation =
+        titleTagMatch[1].toUpperCase();
     }
   }
 
-  return { title, date, time, startAt, official, regulation };
+  return {
+    title,
+    date,
+    time,
+    startAt,
+    official,
+    regulation
+  };
 }
 
 // ===== 新着大会チェック =====
