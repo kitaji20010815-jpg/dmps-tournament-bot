@@ -1,0 +1,35 @@
+name: 開始1時間前リマインド
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # 15分ごと（UTC）
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 依存パッケージのインストール
+        run: npm install
+
+      - name: 1時間前リマインドを実行
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: node run-hourly.js
+
+      - name: data.jsonの変更をコミット
+        run: |
+          git config user.name "dmps-tournament-bot"
+          git config user.email "actions@github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "chore: update data.json [skip ci]"
+          git push
