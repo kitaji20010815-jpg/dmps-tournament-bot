@@ -1,15 +1,15 @@
 {
   "name": "dmps-tournament-bot",
-  "version": "1.0.0",
-  "description": "Tonamelの公認大会一覧を監視し、新着大会をDiscordに通知＆開催日前にリマインドするBot",
+  "version": "2.0.0",
+  "description": "Tonamelの公認大会一覧を監視し、当日9時と開始1時間前にDiscordへリマインドするBot（GitHub Actions版）",
   "type": "module",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "check": "node run-check.js",
+    "daily": "node run-daily.js",
+    "hourly": "node run-hourly.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
-    "node-cron": "^3.0.3",
     "puppeteer": "^22.15.0"
   }
 }
