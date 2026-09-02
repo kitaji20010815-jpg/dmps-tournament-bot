@@ -317,7 +317,7 @@ export async function checkHourlyReminders() {
     const startAt = new Date(comp.startAt);
     const diffMin = (startAt - now) / 60000;
 
-    if (diffMin <= 60 && diffMin > 45) {
+    if (diffMin <= 65 && diffMin > 40) {
       const regText = comp.regulation ? `（${comp.regulation}）` : '';
       await sendWebhook(`⏰ まもなく開始：**${comp.title}**${regText} が1時間後に開始します（${comp.time}～）\n${comp.url}`);
       comp.remindedHour = true;
