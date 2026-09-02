@@ -33,7 +33,7 @@
       "startAt": "2026-09-02T21:10:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "wg93C": {
