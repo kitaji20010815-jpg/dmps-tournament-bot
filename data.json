@@ -46,7 +46,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "0fgEt": {
       "id": "0fgEt",
