@@ -70,7 +70,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "xr4N8": {
       "id": "xr4N8",
