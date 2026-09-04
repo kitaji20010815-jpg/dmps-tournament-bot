@@ -58,7 +58,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "DqeIE": {
       "id": "DqeIE",
