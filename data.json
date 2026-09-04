@@ -57,7 +57,7 @@
       "startAt": "2026-09-04T21:00:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "DqeIE": {
@@ -69,7 +69,7 @@
       "startAt": "2026-09-04T22:00:00+09:00",
       "official": true,
       "regulation": "AD",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "xr4N8": {
