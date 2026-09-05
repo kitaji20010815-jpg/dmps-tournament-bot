@@ -81,7 +81,7 @@
       "startAt": "2026-09-05T21:00:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "ygtSc": {
@@ -93,7 +93,7 @@
       "startAt": "2026-09-05T22:00:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "CDXn7": {
