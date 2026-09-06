@@ -191,7 +191,7 @@ async function fetchDetail(page, url) {
     console.warn(`[WARN] 日時抽出失敗 (${url})`);
   }
 
-  const official = /公認/.test(searchText) || /公認/.test(title);
+  const official = /(?<!非)公認/.test(searchText) || /(?<!非)公認/.test(title);
 
   let regulation = null;
   if (/New\s*Division|ニューディビジョン|フォーマット[:：]?\s*ND\b|レギュレーション[:：]?\s*ND\b/i.test(searchText)) {
