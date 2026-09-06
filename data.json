@@ -105,7 +105,7 @@
       "startAt": "2026-09-06T20:10:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "7F4jN": {
@@ -117,7 +117,7 @@
       "startAt": "2026-09-06T21:00:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "tRZRA": {
