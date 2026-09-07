@@ -130,7 +130,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "Wt2pv": {
       "id": "Wt2pv",
