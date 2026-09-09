@@ -154,7 +154,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "CGby1": {
       "id": "CGby1",
