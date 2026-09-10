@@ -166,7 +166,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "x9sVI": {
       "id": "x9sVI",
