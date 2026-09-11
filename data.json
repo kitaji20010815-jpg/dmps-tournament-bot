@@ -178,7 +178,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "530X5": {
       "id": "530X5",
