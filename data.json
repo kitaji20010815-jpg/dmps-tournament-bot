@@ -335,6 +335,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "6TXe1": {
+      "id": "6TXe1",
+      "url": "https://tonamel.com/competition/6TXe1",
+      "title": "第46回 MN杯【スタートチャージ5/勝利リュウセイ禁止ほか独自制限あり】",
+      "date": "2026-09-20",
+      "time": "21:00",
+      "startAt": "2026-09-20T21:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
