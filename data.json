@@ -347,6 +347,30 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "TOH31": {
+      "id": "TOH31",
+      "url": "https://tonamel.com/competition/TOH31",
+      "title": "第107回フライゲン杯",
+      "date": "2026-10-02",
+      "time": "21:00",
+      "startAt": "2026-10-02T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "xir9G": {
+      "id": "xir9G",
+      "url": "https://tonamel.com/competition/xir9G",
+      "title": "第108回フライゲン杯",
+      "date": "2026-10-05",
+      "time": "21:00",
+      "startAt": "2026-10-05T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
