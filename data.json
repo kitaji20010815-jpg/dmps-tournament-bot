@@ -371,6 +371,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "oNjVE": {
+      "id": "oNjVE",
+      "url": "https://tonamel.com/competition/oNjVE",
+      "title": "9/15 デュエマ ガチデュエバトル",
+      "date": "2026-09-15",
+      "time": "19:00",
+      "startAt": "2026-09-15T19:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
