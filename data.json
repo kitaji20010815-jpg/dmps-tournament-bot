@@ -383,6 +383,30 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "MpqoN": {
+      "id": "MpqoN",
+      "url": "https://tonamel.com/competition/MpqoN",
+      "title": "【DMPS公認大会】ZweiLance CUP -All Division-",
+      "date": "2026-10-08",
+      "time": "21:00",
+      "startAt": "2026-10-08T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "GXY1R": {
+      "id": "GXY1R",
+      "url": "https://tonamel.com/competition/GXY1R",
+      "title": "【DMPS公認大会】ZweiLance CUP -All Division-",
+      "date": "2026-10-19",
+      "time": "21:00",
+      "startAt": "2026-10-19T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
