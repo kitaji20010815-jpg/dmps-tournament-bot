@@ -214,7 +214,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "QtHXt": {
       "id": "QtHXt",
