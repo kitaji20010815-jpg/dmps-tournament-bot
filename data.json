@@ -226,7 +226,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "mP9AF": {
       "id": "mP9AF",
