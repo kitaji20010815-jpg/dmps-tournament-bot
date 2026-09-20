@@ -407,6 +407,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "LJ7p3": {
+      "id": "LJ7p3",
+      "url": "https://tonamel.com/competition/LJ7p3",
+      "title": "スタートダッシュ杯 【08】",
+      "date": "2026-09-24",
+      "time": "21:00",
+      "startAt": "2026-09-24T21:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
