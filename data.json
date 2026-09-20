@@ -419,6 +419,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "RGGDR": {
+      "id": "RGGDR",
+      "url": "https://tonamel.com/competition/RGGDR",
+      "title": "【非公認】第3回賽天杯",
+      "date": "2026-10-04",
+      "time": "20:10",
+      "startAt": "2026-10-04T20:10:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
