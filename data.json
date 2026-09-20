@@ -262,7 +262,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": false,
-      "remindedHour": false
+      "remindedHour": true
     },
     "YP0ZZ": {
       "id": "YP0ZZ",
