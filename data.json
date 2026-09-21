@@ -274,7 +274,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "10t61": {
       "id": "10t61",
