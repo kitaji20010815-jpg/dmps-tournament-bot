@@ -431,6 +431,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Tj0Zz": {
+      "id": "Tj0Zz",
+      "url": "https://tonamel.com/competition/Tj0Zz",
+      "title": "わんこ杯25杯目 New Division",
+      "date": "2026-09-29",
+      "time": "21:30",
+      "startAt": "2026-09-29T21:30:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
