@@ -286,7 +286,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "ZSm9Y": {
       "id": "ZSm9Y",
