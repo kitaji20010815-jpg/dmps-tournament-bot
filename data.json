@@ -285,7 +285,7 @@
       "startAt": "2026-09-22T21:05:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "ZSm9Y": {
