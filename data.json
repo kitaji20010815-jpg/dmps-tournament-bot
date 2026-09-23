@@ -310,7 +310,7 @@
       "official": true,
       "regulation": "SP",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "6Eect": {
       "id": "6Eect",
