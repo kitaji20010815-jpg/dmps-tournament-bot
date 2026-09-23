@@ -443,6 +443,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "hDKxg": {
+      "id": "hDKxg",
+      "url": "https://tonamel.com/competition/hDKxg",
+      "title": "第4回　Shimezi研究所Cup",
+      "date": "2026-09-27",
+      "time": "22:00",
+      "startAt": "2026-09-27T22:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
