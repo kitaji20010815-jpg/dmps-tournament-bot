@@ -455,6 +455,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "vKds0": {
+      "id": "vKds0",
+      "url": "https://tonamel.com/competition/vKds0",
+      "title": "第1回ディール杯",
+      "date": "2026-09-26",
+      "time": "20:00",
+      "startAt": "2026-09-26T20:00:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
