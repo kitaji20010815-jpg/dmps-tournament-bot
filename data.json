@@ -467,6 +467,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "yOrVP": {
+      "id": "yOrVP",
+      "url": "https://tonamel.com/competition/yOrVP",
+      "title": "【公認】宇都宮MAGICA杯",
+      "date": "2026-10-01",
+      "time": "21:00",
+      "startAt": "2026-10-01T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "lmxJl": {
+      "id": "lmxJl",
+      "url": "https://tonamel.com/competition/lmxJl",
+      "title": "【公認】宇都宮MAGICA杯",
+      "date": "2026-10-04",
+      "time": "21:00",
+      "startAt": "2026-10-04T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
