@@ -491,6 +491,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "TqfqI": {
+      "id": "TqfqI",
+      "url": "https://tonamel.com/competition/TqfqI",
+      "title": "【DMPS公認大会／AD個人戦】じぇ〜のAD杯 26.10.18昼の部",
+      "date": "2026-10-18",
+      "time": "13:00",
+      "startAt": "2026-10-18T13:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "8Zopv": {
+      "id": "8Zopv",
+      "url": "https://tonamel.com/competition/8Zopv",
+      "title": "【DMPS公認大会／AD個人戦】じぇ〜のAD杯 26.10.18夜の部",
+      "date": "2026-10-18",
+      "time": "18:00",
+      "startAt": "2026-10-18T18:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
