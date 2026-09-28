@@ -515,6 +515,78 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Lj4vh": {
+      "id": "Lj4vh",
+      "url": "https://tonamel.com/competition/Lj4vh",
+      "title": "【公認大会・SR以上禁止】ミノバトCUP～Under VR Match～#79",
+      "date": "2026-10-03",
+      "time": "21:00",
+      "startAt": "2026-10-03T21:00:00+09:00",
+      "official": true,
+      "regulation": "SP",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "1oWBI": {
+      "id": "1oWBI",
+      "url": "https://tonamel.com/competition/1oWBI",
+      "title": "【公認】REIGN DMPS VERTEX CUP 2026 Spring vol.1",
+      "date": "2026-10-10",
+      "time": "21:00",
+      "startAt": "2026-10-10T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "qGp13": {
+      "id": "qGp13",
+      "url": "https://tonamel.com/competition/qGp13",
+      "title": "【公認大会】ミノバトCUP～スタートチャージ5～#18",
+      "date": "2026-10-11",
+      "time": "21:00",
+      "startAt": "2026-10-11T21:00:00+09:00",
+      "official": true,
+      "regulation": "SP",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "tkz6j": {
+      "id": "tkz6j",
+      "url": "https://tonamel.com/competition/tkz6j",
+      "title": "［公認］鹿刺し杯Vol.145(ND)",
+      "date": "2026-10-12",
+      "time": "21:00",
+      "startAt": "2026-10-12T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "tTNxB": {
+      "id": "tTNxB",
+      "url": "https://tonamel.com/competition/tTNxB",
+      "title": "【公認】REIGN DMPS VERTEX CUP 2026 Spring vol.2",
+      "date": "2026-10-14",
+      "time": "21:00",
+      "startAt": "2026-10-14T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "ehW7c": {
+      "id": "ehW7c",
+      "url": "https://tonamel.com/competition/ehW7c",
+      "title": "［公認］鹿刺し杯Vol.146(AD)",
+      "date": "2026-10-21",
+      "time": "21:00",
+      "startAt": "2026-10-21T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
