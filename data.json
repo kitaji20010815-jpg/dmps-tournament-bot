@@ -587,6 +587,78 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "6h6zw": {
+      "id": "6h6zw",
+      "url": "https://tonamel.com/competition/6h6zw",
+      "title": "【公認大会】Go1d杯",
+      "date": "2026-10-06",
+      "time": "21:05",
+      "startAt": "2026-10-06T21:05:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "c5An0": {
+      "id": "c5An0",
+      "url": "https://tonamel.com/competition/c5An0",
+      "title": "【公認】すみリン杯vol.67",
+      "date": "2026-10-07",
+      "time": "21:10",
+      "startAt": "2026-10-07T21:10:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "X5818": {
+      "id": "X5818",
+      "url": "https://tonamel.com/competition/X5818",
+      "title": "【公認】すみリン杯vol.68",
+      "date": "2026-10-09",
+      "time": "21:10",
+      "startAt": "2026-10-09T21:10:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "lINEX": {
+      "id": "lINEX",
+      "url": "https://tonamel.com/competition/lINEX",
+      "title": "【DMPS公認大会／ND個人戦】CITRUS CS with 堀江ありす 3rd",
+      "date": "2026-10-13",
+      "time": "21:10",
+      "startAt": "2026-10-13T21:10:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "3cfKw": {
+      "id": "3cfKw",
+      "url": "https://tonamel.com/competition/3cfKw",
+      "title": "【DMPS公認大会／AD個人戦】CITRUS CS",
+      "date": "2026-10-17",
+      "time": "21:10",
+      "startAt": "2026-10-17T21:10:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "ibn5Q": {
+      "id": "ibn5Q",
+      "url": "https://tonamel.com/competition/ibn5Q",
+      "title": "【公認大会】Go1d杯",
+      "date": "2026-10-20",
+      "time": "21:05",
+      "startAt": "2026-10-20T21:05:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
