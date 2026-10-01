@@ -478,7 +478,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "lmxJl": {
       "id": "lmxJl",
