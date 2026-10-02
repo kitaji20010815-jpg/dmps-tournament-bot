@@ -358,7 +358,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "xir9G": {
       "id": "xir9G",
