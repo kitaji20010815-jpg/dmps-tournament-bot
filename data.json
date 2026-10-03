@@ -526,7 +526,7 @@
       "official": true,
       "regulation": "SP",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "1oWBI": {
       "id": "1oWBI",
