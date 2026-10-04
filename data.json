@@ -489,7 +489,7 @@
       "startAt": "2026-10-04T21:00:00+09:00",
       "official": true,
       "regulation": "AD",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "TqfqI": {
