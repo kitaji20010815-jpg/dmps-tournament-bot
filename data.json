@@ -659,6 +659,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "IY6av": {
+      "id": "IY6av",
+      "url": "https://tonamel.com/competition/IY6av",
+      "title": "【非公認】第4回賽天杯",
+      "date": "2026-10-18",
+      "time": "20:10",
+      "startAt": "2026-10-18T20:10:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
