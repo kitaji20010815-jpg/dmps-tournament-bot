@@ -370,7 +370,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "oNjVE": {
       "id": "oNjVE",
