@@ -598,7 +598,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "c5An0": {
       "id": "c5An0",
