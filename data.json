@@ -671,6 +671,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "bnI2S": {
+      "id": "bnI2S",
+      "url": "https://tonamel.com/competition/bnI2S",
+      "title": "第47回 MN杯【スタートチャージ5/勝利リュウセイ禁止ほか独自制限あり】",
+      "date": "2026-10-17",
+      "time": "21:00",
+      "startAt": "2026-10-17T21:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "CpIU9": {
+      "id": "CpIU9",
+      "url": "https://tonamel.com/competition/CpIU9",
+      "title": "第2回 新章種族王(ハイランダー)",
+      "date": "2026-10-24",
+      "time": "21:00",
+      "startAt": "2026-10-24T21:00:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
