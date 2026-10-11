@@ -549,7 +549,7 @@
       "startAt": "2026-10-11T21:00:00+09:00",
       "official": true,
       "regulation": "SP",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "tkz6j": {
