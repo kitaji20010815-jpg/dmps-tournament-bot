@@ -695,6 +695,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "LCLrz": {
+      "id": "LCLrz",
+      "url": "https://tonamel.com/competition/LCLrz",
+      "title": "10/11 デュエマ　レジェンドカード解禁祭",
+      "date": "2026-10-11",
+      "time": "15:00",
+      "startAt": "2026-10-11T15:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "wlEeG": {
+      "id": "wlEeG",
+      "url": "https://tonamel.com/competition/wlEeG",
+      "title": "【デュエプレ】明装オクト　トナメル勉強杯",
+      "date": "2026-10-11",
+      "time": "20:30",
+      "startAt": "2026-10-11T20:30:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
