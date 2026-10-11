@@ -550,7 +550,7 @@
       "official": true,
       "regulation": "SP",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "tkz6j": {
       "id": "tkz6j",
