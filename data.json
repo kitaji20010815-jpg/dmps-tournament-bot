@@ -562,7 +562,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "tTNxB": {
       "id": "tTNxB",
