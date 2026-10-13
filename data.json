@@ -634,7 +634,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "3cfKw": {
       "id": "3cfKw",
