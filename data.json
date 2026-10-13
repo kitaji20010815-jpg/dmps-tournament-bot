@@ -719,6 +719,18 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "XNRSp": {
+      "id": "XNRSp",
+      "url": "https://tonamel.com/competition/XNRSp",
+      "title": "電脳対戦 -WAR OF PLAY'S- 発売記念 デュエプレ交流会",
+      "date": "2026-11-03",
+      "time": "16:30",
+      "startAt": "2026-11-03T16:30:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
