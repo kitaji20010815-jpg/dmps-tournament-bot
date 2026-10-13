@@ -633,7 +633,7 @@
       "startAt": "2026-10-13T21:10:00+09:00",
       "official": true,
       "regulation": "ND",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "3cfKw": {
