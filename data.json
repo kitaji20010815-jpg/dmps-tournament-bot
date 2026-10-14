@@ -755,6 +755,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "uDUW3": {
+      "id": "uDUW3",
+      "url": "https://tonamel.com/competition/uDUW3",
+      "title": "第109回フライゲン杯",
+      "date": "2026-11-02",
+      "time": "21:00",
+      "startAt": "2026-11-02T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "OGFRb": {
+      "id": "OGFRb",
+      "url": "https://tonamel.com/competition/OGFRb",
+      "title": "第110回フライゲン杯",
+      "date": "2026-11-04",
+      "time": "21:00",
+      "startAt": "2026-11-04T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
