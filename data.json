@@ -731,6 +731,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "AKP43": {
+      "id": "AKP43",
+      "url": "https://tonamel.com/competition/AKP43",
+      "title": "【DMPS公認大会／AD個人戦】CITRUS CS",
+      "date": "2026-11-23",
+      "time": "21:10",
+      "startAt": "2026-11-23T21:10:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "cZ5DW": {
+      "id": "cZ5DW",
+      "url": "https://tonamel.com/competition/cZ5DW",
+      "title": "【DMPS公認大会／AD個人戦】CITRUS CS with 堀江ありす 4th",
+      "date": "2026-11-24",
+      "time": "21:10",
+      "startAt": "2026-11-24T21:10:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
