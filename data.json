@@ -779,6 +779,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "AItJY": {
+      "id": "AItJY",
+      "url": "https://tonamel.com/competition/AItJY",
+      "title": "キノコの門「Under R#3」",
+      "date": "2026-10-25",
+      "time": "21:00",
+      "startAt": "2026-10-25T21:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
