@@ -791,6 +791,30 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "gETv5": {
+      "id": "gETv5",
+      "url": "https://tonamel.com/competition/gETv5",
+      "title": "【DMPS公認大会／AD個人戦】じぇ〜のAD杯 26.11.3昼の部",
+      "date": "2026-11-03",
+      "time": "13:00",
+      "startAt": "2026-11-03T13:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "cpp9V": {
+      "id": "cpp9V",
+      "url": "https://tonamel.com/competition/cpp9V",
+      "title": "【DMPS公認大会／AD個人戦】じぇ〜のAD杯 26.11.3夜の部",
+      "date": "2026-11-03",
+      "time": "18:00",
+      "startAt": "2026-11-03T18:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
