@@ -646,7 +646,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "ibn5Q": {
       "id": "ibn5Q",
