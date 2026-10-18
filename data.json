@@ -839,6 +839,18 @@
       "regulation": "SP",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "szHOj": {
+      "id": "szHOj",
+      "url": "https://tonamel.com/competition/szHOj",
+      "title": "【非公認】第5回賽天杯",
+      "date": "2026-10-25",
+      "time": "19:00",
+      "startAt": "2026-10-25T19:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
