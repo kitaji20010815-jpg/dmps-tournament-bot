@@ -502,7 +502,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "8Zopv": {
       "id": "8Zopv",
