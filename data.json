@@ -815,6 +815,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "1u9rA": {
+      "id": "1u9rA",
+      "url": "https://tonamel.com/competition/1u9rA",
+      "title": "【公認大会・SR以上禁止】ミノバトCUP～Under VR Match～#80",
+      "date": "2026-11-07",
+      "time": "21:00",
+      "startAt": "2026-11-07T21:00:00+09:00",
+      "official": true,
+      "regulation": "SP",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "H2A8o": {
+      "id": "H2A8o",
+      "url": "https://tonamel.com/competition/H2A8o",
+      "title": "【公認大会・SR以上禁止】ミノバトCUP～Under VR Match～#81",
+      "date": "2026-11-14",
+      "time": "21:00",
+      "startAt": "2026-11-14T21:00:00+09:00",
+      "official": true,
+      "regulation": "SP",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
