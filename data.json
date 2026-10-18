@@ -501,7 +501,7 @@
       "startAt": "2026-10-18T13:00:00+09:00",
       "official": true,
       "regulation": "AD",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "8Zopv": {
@@ -513,7 +513,7 @@
       "startAt": "2026-10-18T18:00:00+09:00",
       "official": true,
       "regulation": "AD",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "Lj4vh": {
