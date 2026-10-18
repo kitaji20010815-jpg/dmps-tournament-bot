@@ -514,7 +514,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "Lj4vh": {
       "id": "Lj4vh",
