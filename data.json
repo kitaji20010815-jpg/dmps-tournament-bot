@@ -406,7 +406,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "LJ7p3": {
       "id": "LJ7p3",
