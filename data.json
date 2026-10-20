@@ -875,6 +875,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Hf3dZ": {
+      "id": "Hf3dZ",
+      "url": "https://tonamel.com/competition/Hf3dZ",
+      "title": "10/20 デュエマ ガチデュエバトル",
+      "date": "2026-10-20",
+      "time": "19:00",
+      "startAt": "2026-10-20T19:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
