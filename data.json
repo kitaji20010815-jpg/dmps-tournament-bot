@@ -658,7 +658,7 @@
       "official": true,
       "regulation": "ND",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "IY6av": {
       "id": "IY6av",
