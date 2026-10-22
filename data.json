@@ -887,6 +887,18 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Smlf7": {
+      "id": "Smlf7",
+      "url": "https://tonamel.com/competition/Smlf7",
+      "title": "第一回　オクト杯",
+      "date": "2026-10-30",
+      "time": "20:30",
+      "startAt": "2026-10-30T20:30:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
