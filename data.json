@@ -899,6 +899,18 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "25Zna": {
+      "id": "25Zna",
+      "url": "https://tonamel.com/competition/25Zna",
+      "title": "環境カード禁止杯",
+      "date": "2026-10-31",
+      "time": "21:00",
+      "startAt": "2026-10-31T21:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
