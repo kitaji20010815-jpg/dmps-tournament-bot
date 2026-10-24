@@ -911,6 +911,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "scwSM": {
+      "id": "scwSM",
+      "url": "https://tonamel.com/competition/scwSM",
+      "title": "わんこ杯26杯目 New Division",
+      "date": "2026-10-29",
+      "time": "21:30",
+      "startAt": "2026-10-29T21:30:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
