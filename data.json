@@ -923,6 +923,30 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "8f8U9": {
+      "id": "8f8U9",
+      "url": "https://tonamel.com/competition/8f8U9",
+      "title": "【公認】宇都宮MAGICA杯",
+      "date": "2026-11-08",
+      "time": "21:00",
+      "startAt": "2026-11-08T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "JokQU": {
+      "id": "JokQU",
+      "url": "https://tonamel.com/competition/JokQU",
+      "title": "【公認】宇都宮MAGICA杯",
+      "date": "2026-11-09",
+      "time": "21:00",
+      "startAt": "2026-11-09T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
