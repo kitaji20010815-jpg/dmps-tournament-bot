@@ -947,6 +947,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Mn6GT": {
+      "id": "Mn6GT",
+      "url": "https://tonamel.com/competition/Mn6GT",
+      "title": "電脳対戦 -WAR OF PLAY'S- BOX争奪戦【デュエプレ】",
+      "date": "2026-11-07",
+      "time": "16:30",
+      "startAt": "2026-11-07T16:30:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
