@@ -959,6 +959,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "kV3kR": {
+      "id": "kV3kR",
+      "url": "https://tonamel.com/competition/kV3kR",
+      "title": "【公認】すみリン杯vol.69",
+      "date": "2026-11-06",
+      "time": "21:10",
+      "startAt": "2026-11-06T21:10:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
