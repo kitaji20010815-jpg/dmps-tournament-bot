@@ -971,6 +971,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Ccdyg": {
+      "id": "Ccdyg",
+      "url": "https://tonamel.com/competition/Ccdyg",
+      "title": "【公認大会】Go1d杯 ※AD",
+      "date": "2026-11-10",
+      "time": "21:05",
+      "startAt": "2026-11-10T21:05:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "zqfsG": {
+      "id": "zqfsG",
+      "url": "https://tonamel.com/competition/zqfsG",
+      "title": "【公認大会】Go1d杯 ※AD",
+      "date": "2026-11-17",
+      "time": "21:05",
+      "startAt": "2026-11-17T21:05:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
