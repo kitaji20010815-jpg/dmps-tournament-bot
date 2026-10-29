@@ -995,6 +995,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "aQXNi": {
+      "id": "aQXNi",
+      "url": "https://tonamel.com/competition/aQXNi",
+      "title": "【公認】REIGN DMPS VERTEX CUP 2026 Winter vol.3",
+      "date": "2026-11-11",
+      "time": "21:00",
+      "startAt": "2026-11-11T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "SeOAZ": {
+      "id": "SeOAZ",
+      "url": "https://tonamel.com/competition/SeOAZ",
+      "title": "【公認】REIGN DMPS VERTEX CUP 2026 Winter vol.4",
+      "date": "2026-11-22",
+      "time": "21:00",
+      "startAt": "2026-11-22T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
