@@ -1019,6 +1019,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "ky76F": {
+      "id": "ky76F",
+      "url": "https://tonamel.com/competition/ky76F",
+      "title": "［公認］鹿刺し杯Vol.147(AD)",
+      "date": "2026-11-05",
+      "time": "21:00",
+      "startAt": "2026-11-05T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
