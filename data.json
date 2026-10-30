@@ -1043,6 +1043,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Pv0rB": {
+      "id": "Pv0rB",
+      "url": "https://tonamel.com/competition/Pv0rB",
+      "title": "【公認】すみリン杯vol.70",
+      "date": "2026-11-13",
+      "time": "21:10",
+      "startAt": "2026-11-13T21:10:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
