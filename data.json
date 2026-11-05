@@ -1030,7 +1030,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "8ygdb": {
       "id": "8ygdb",
