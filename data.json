@@ -970,7 +970,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "Ccdyg": {
       "id": "Ccdyg",
