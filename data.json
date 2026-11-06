@@ -1055,6 +1055,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "A5O3r": {
+      "id": "A5O3r",
+      "url": "https://tonamel.com/competition/A5O3r",
+      "title": "第1回 Reversalチーム内戦",
+      "date": "2026-11-14",
+      "time": "21:00",
+      "startAt": "2026-11-14T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
