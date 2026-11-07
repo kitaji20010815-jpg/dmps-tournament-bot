@@ -826,7 +826,7 @@
       "official": true,
       "regulation": "SP",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "H2A8o": {
       "id": "H2A8o",
