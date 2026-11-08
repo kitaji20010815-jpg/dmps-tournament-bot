@@ -934,7 +934,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "JokQU": {
       "id": "JokQU",
