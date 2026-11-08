@@ -1067,6 +1067,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "NewXn": {
+      "id": "NewXn",
+      "url": "https://tonamel.com/competition/NewXn",
+      "title": "(11/22)裏デッキビルド杯#27",
+      "date": "2026-11-22",
+      "time": "20:30",
+      "startAt": "2026-11-22T20:30:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
