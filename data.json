@@ -1091,6 +1091,18 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "XXYFm": {
+      "id": "XXYFm",
+      "url": "https://tonamel.com/competition/XXYFm",
+      "title": "『初心者向け』マインレイヤー杯 レベルR",
+      "date": "2026-11-14",
+      "time": "20:00",
+      "startAt": "2026-11-14T20:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
