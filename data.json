@@ -1079,6 +1079,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "GQ0Ny": {
+      "id": "GQ0Ny",
+      "url": "https://tonamel.com/competition/GQ0Ny",
+      "title": "『初心者向け』マインレイヤー杯 レベルR デュエプレを始めたての人に向けた大会",
+      "date": "2026-11-11",
+      "time": "20:00",
+      "startAt": "2026-11-11T20:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
