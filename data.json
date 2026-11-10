@@ -981,7 +981,7 @@
       "startAt": "2026-11-10T21:05:00+09:00",
       "official": true,
       "regulation": "AD",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "zqfsG": {
