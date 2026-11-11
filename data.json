@@ -1103,6 +1103,30 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "zMc3n": {
+      "id": "zMc3n",
+      "url": "https://tonamel.com/competition/zMc3n",
+      "title": "［公認］鹿刺し杯Vol.149(ND)",
+      "date": "2026-12-14",
+      "time": "21:00",
+      "startAt": "2026-12-14T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "u0v5W": {
+      "id": "u0v5W",
+      "url": "https://tonamel.com/competition/u0v5W",
+      "title": "［公認］鹿刺し杯Vol.150(ND)",
+      "date": "2026-12-30",
+      "time": "21:00",
+      "startAt": "2026-12-30T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
