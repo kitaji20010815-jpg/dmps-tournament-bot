@@ -1127,6 +1127,78 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "PHeNy": {
+      "id": "PHeNy",
+      "url": "https://tonamel.com/competition/PHeNy",
+      "title": "【DMPS公認大会】ZweiLance CUP -New Division-",
+      "date": "2026-12-01",
+      "time": "21:00",
+      "startAt": "2026-12-01T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "7mWoH": {
+      "id": "7mWoH",
+      "url": "https://tonamel.com/competition/7mWoH",
+      "title": "第111回フライゲン杯",
+      "date": "2026-12-03",
+      "time": "21:00",
+      "startAt": "2026-12-03T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "RqpwH": {
+      "id": "RqpwH",
+      "url": "https://tonamel.com/competition/RqpwH",
+      "title": "第112回フライゲン杯",
+      "date": "2026-12-04",
+      "time": "21:00",
+      "startAt": "2026-12-04T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "qmRXT": {
+      "id": "qmRXT",
+      "url": "https://tonamel.com/competition/qmRXT",
+      "title": "【公認大会】Go1d杯",
+      "date": "2026-12-09",
+      "time": "20:00",
+      "startAt": "2026-12-09T20:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "wp5I7": {
+      "id": "wp5I7",
+      "url": "https://tonamel.com/competition/wp5I7",
+      "title": "【DMPS公認大会】ZweiLance CUP -New Division-",
+      "date": "2026-12-24",
+      "time": "21:00",
+      "startAt": "2026-12-24T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "OVsbf": {
+      "id": "OVsbf",
+      "url": "https://tonamel.com/competition/OVsbf",
+      "title": "【公認大会】Go1d杯",
+      "date": "2026-12-29",
+      "time": "21:05",
+      "startAt": "2026-12-29T21:05:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
