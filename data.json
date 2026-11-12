@@ -862,7 +862,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "7ovq1": {
       "id": "7ovq1",
