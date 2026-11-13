@@ -1199,6 +1199,30 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "dlaUP": {
+      "id": "dlaUP",
+      "url": "https://tonamel.com/competition/dlaUP",
+      "title": "【DMPS公認大会／AD個人戦】じぇ〜のAD杯 26.12.5昼の部",
+      "date": "2026-12-05",
+      "time": "13:00",
+      "startAt": "2026-12-05T13:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "OclG1": {
+      "id": "OclG1",
+      "url": "https://tonamel.com/competition/OclG1",
+      "title": "【DMPS公認大会／AD個人戦】じぇ〜のAD杯 26.12.5夜の部",
+      "date": "2026-12-05",
+      "time": "18:00",
+      "startAt": "2026-12-05T18:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
