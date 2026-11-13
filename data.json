@@ -1054,7 +1054,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "A5O3r": {
       "id": "A5O3r",
