@@ -838,7 +838,7 @@
       "official": true,
       "regulation": "SP",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "szHOj": {
       "id": "szHOj",
@@ -1066,7 +1066,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "NewXn": {
       "id": "NewXn",
