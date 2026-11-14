@@ -837,7 +837,7 @@
       "startAt": "2026-11-14T21:00:00+09:00",
       "official": true,
       "regulation": "SP",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "szHOj": {
@@ -1065,7 +1065,7 @@
       "startAt": "2026-11-14T21:00:00+09:00",
       "official": true,
       "regulation": "AD",
-      "remindedDay": false,
+      "remindedDay": true,
       "remindedHour": false
     },
     "NewXn": {
