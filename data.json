@@ -1223,6 +1223,30 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "GVLzp": {
+      "id": "GVLzp",
+      "url": "https://tonamel.com/competition/GVLzp",
+      "title": "【公認】宇都宮MAGICA杯",
+      "date": "2026-12-02",
+      "time": "21:00",
+      "startAt": "2026-12-02T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "0p7KI": {
+      "id": "0p7KI",
+      "url": "https://tonamel.com/competition/0p7KI",
+      "title": "【公認】宇都宮MAGICA杯",
+      "date": "2026-12-10",
+      "time": "21:00",
+      "startAt": "2026-12-10T21:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
