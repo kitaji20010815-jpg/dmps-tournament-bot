@@ -1271,6 +1271,66 @@
       "regulation": "SP",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "tNLu1": {
+      "id": "tNLu1",
+      "url": "https://tonamel.com/competition/tNLu1",
+      "title": "第48回 MN杯【スタートチャージ5/勝利リュウセイ禁止ほか独自制限あり】",
+      "date": "2026-11-21",
+      "time": "21:00",
+      "startAt": "2026-11-21T21:00:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "A1bQF": {
+      "id": "A1bQF",
+      "url": "https://tonamel.com/competition/A1bQF",
+      "title": "【公認】REIGN DMPS VERTEX CUP 2026 Winter vol.5",
+      "date": "2026-12-06",
+      "time": "21:00",
+      "startAt": "2026-12-06T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "imLW8": {
+      "id": "imLW8",
+      "url": "https://tonamel.com/competition/imLW8",
+      "title": "【DMPS公認大会／AD個人戦】CITRUS CS with 堀江ありす 5th",
+      "date": "2026-12-11",
+      "time": "21:10",
+      "startAt": "2026-12-11T21:10:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "Pxp1O": {
+      "id": "Pxp1O",
+      "url": "https://tonamel.com/competition/Pxp1O",
+      "title": "【公認】REIGN DMPS VERTEX CUP 2026 Winter vol.6",
+      "date": "2026-12-16",
+      "time": "21:00",
+      "startAt": "2026-12-16T21:00:00+09:00",
+      "official": true,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "7iDLX": {
+      "id": "7iDLX",
+      "url": "https://tonamel.com/competition/7iDLX",
+      "title": "【DMPS公認大会／ND2人制チーム戦】CITRUS CS",
+      "date": "2026-12-26",
+      "time": "18:00",
+      "startAt": "2026-12-26T18:00:00+09:00",
+      "official": true,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
