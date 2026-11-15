@@ -1247,6 +1247,30 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "fzik3": {
+      "id": "fzik3",
+      "url": "https://tonamel.com/competition/fzik3",
+      "title": "【公認大会・SR以上禁止】ミノバトCUP～Under VR Match～#82",
+      "date": "2026-12-12",
+      "time": "21:00",
+      "startAt": "2026-12-12T21:00:00+09:00",
+      "official": true,
+      "regulation": "SP",
+      "remindedDay": false,
+      "remindedHour": false
+    },
+    "r6Xrn": {
+      "id": "r6Xrn",
+      "url": "https://tonamel.com/competition/r6Xrn",
+      "title": "【公認大会】ミノバトCUP～スタートチャージ5～#19",
+      "date": "2026-12-27",
+      "time": "21:00",
+      "startAt": "2026-12-27T21:00:00+09:00",
+      "official": true,
+      "regulation": "SP",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
