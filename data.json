@@ -1331,6 +1331,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "n76BS": {
+      "id": "n76BS",
+      "url": "https://tonamel.com/competition/n76BS",
+      "title": "マインレイヤー杯レベルR 初心者向けデュエプレ大会",
+      "date": "2026-11-19",
+      "time": "20:00",
+      "startAt": "2026-11-19T20:00:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
