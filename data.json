@@ -994,7 +994,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "aQXNi": {
       "id": "aQXNi",
