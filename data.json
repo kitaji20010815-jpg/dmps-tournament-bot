@@ -1343,6 +1343,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "3mkCb": {
+      "id": "3mkCb",
+      "url": "https://tonamel.com/competition/3mkCb",
+      "title": "スタートダッシュ杯 【09】",
+      "date": "2026-11-26",
+      "time": "21:00",
+      "startAt": "2026-11-26T21:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
