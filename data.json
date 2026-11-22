@@ -1355,6 +1355,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "mrtoZ": {
+      "id": "mrtoZ",
+      "url": "https://tonamel.com/competition/mrtoZ",
+      "title": "わんこ杯27杯目 New Division",
+      "date": "2026-11-27",
+      "time": "21:30",
+      "startAt": "2026-11-27T21:30:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
