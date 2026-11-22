@@ -1018,7 +1018,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "ky76F": {
       "id": "ky76F",
