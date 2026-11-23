@@ -742,7 +742,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "cZ5DW": {
       "id": "cZ5DW",
