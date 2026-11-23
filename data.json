@@ -1367,6 +1367,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "50lHG": {
+      "id": "50lHG",
+      "url": "https://tonamel.com/competition/50lHG",
+      "title": "【非公認】第6回賽天杯",
+      "date": "2026-11-29",
+      "time": "20:10",
+      "startAt": "2026-11-29T20:10:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
