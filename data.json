@@ -754,7 +754,7 @@
       "official": true,
       "regulation": "AD",
       "remindedDay": true,
-      "remindedHour": false
+      "remindedHour": true
     },
     "uDUW3": {
       "id": "uDUW3",
