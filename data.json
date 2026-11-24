@@ -1379,6 +1379,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "tO7ty": {
+      "id": "tO7ty",
+      "url": "https://tonamel.com/competition/tO7ty",
+      "title": "明装オクト杯　#2",
+      "date": "2026-11-27",
+      "time": "20:30",
+      "startAt": "2026-11-27T20:30:00+09:00",
+      "official": false,
+      "regulation": null,
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
