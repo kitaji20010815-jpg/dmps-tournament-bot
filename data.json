@@ -1391,6 +1391,18 @@
       "regulation": null,
       "remindedDay": false,
       "remindedHour": false
+    },
+    "DoVk1": {
+      "id": "DoVk1",
+      "url": "https://tonamel.com/competition/DoVk1",
+      "title": "PLAY'S TWINPACT PROJECT PACK　シールド戦",
+      "date": "2026-11-28",
+      "time": "14:00",
+      "startAt": "2026-11-28T14:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
