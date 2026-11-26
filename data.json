@@ -1403,6 +1403,18 @@
       "regulation": "ND",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "e8wdM": {
+      "id": "e8wdM",
+      "url": "https://tonamel.com/competition/e8wdM",
+      "title": "第５回　Shimezi研究所Cup《AD戦》",
+      "date": "2026-11-28",
+      "time": "22:00",
+      "startAt": "2026-11-28T22:00:00+09:00",
+      "official": false,
+      "regulation": "AD",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
