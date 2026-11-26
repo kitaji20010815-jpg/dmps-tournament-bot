@@ -1415,6 +1415,18 @@
       "regulation": "AD",
       "remindedDay": false,
       "remindedHour": false
+    },
+    "Njdul": {
+      "id": "Njdul",
+      "url": "https://tonamel.com/competition/Njdul",
+      "title": "第５回　Shimezi研究所Cup《ND戦》",
+      "date": "2026-11-29",
+      "time": "22:00",
+      "startAt": "2026-11-29T22:00:00+09:00",
+      "official": false,
+      "regulation": "ND",
+      "remindedDay": false,
+      "remindedHour": false
     }
   }
 }
